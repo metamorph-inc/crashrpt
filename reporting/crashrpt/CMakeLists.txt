@@ -38,6 +38,8 @@ foreach (flag_var
 endforeach()    
 
 set(CMAKE_EXE_LINKER_FLAGS_RELEASE "${CMAKE_EXE_LINKER_FLAGS_RELEASE} /DEBUG") 
+set_property(TARGET CrashRpt APPEND PROPERTY LINK_FLAGS /DEBUG)
+
 
 # Add compiler flags (/MP for multi-processor compilation, /fp:except to handle floating-point exceptions; /Zi, /DEBUG to generate debugging symbols)
 #set_target_properties(CrashRpt PROPERTIES  LINK_FLAGS "/DEBUG")

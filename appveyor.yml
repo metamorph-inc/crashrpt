@@ -1,0 +1,19 @@
+# https://ci.appveyor.com/project/Metamorph/crashrpt
+
+image:
+  - Visual Studio 2022
+
+build_script:
+  - '"c:\Program Files\CMake\bin\cmake" -G "Visual Studio 17 2022" -B build_32 -A Win32'
+  - 'msbuild /m build_32\CrashRpt.sln /p:Configuration=Release'
+
+  - '"c:\Program Files\CMake\bin\cmake" -G "Visual Studio 17 2022" -B build_64 -A x64'
+  - 'msbuild /m build_64\CrashRpt.sln /p:Configuration=Release'
+
+  - '7z a -m1=LZMA CrashRpt.7z build_32/bin/CrashRpt1403.dll build_32/bin/CrashRpt1403.pdb build_32/bin/CrashSender1403.exe build_32/bin/crashrpt_lang.ini build_32/lib/CrashRpt1403.lib build_64/bin/x64/CrashRpt1403.dll build_64/bin/x64/CrashRpt1403.pdb build_64/bin/x64/CrashSender1403.exe build_64/bin/x64/crashrpt_lang.ini build_64/lib/x64/CrashRpt1403.lib'
+
+  - 'sha1sum *.7z build_32/bin/* build_64/bin/x64/*'
+
+
+artifacts:
+  - path: CrashRpt.7z

@@ -99,6 +99,8 @@ endmacro()
 add_subdirectory("demos/ConsoleDemo")
 add_subdirectory("demos/WTLDemo")
 add_subdirectory("demos/MFCDemo")
+set_target_properties(MFCDemo PROPERTIES EXCLUDE_FROM_ALL TRUE)
+set_target_properties(MFCDemo PROPERTIES EXCLUDE_FROM_DEFAULT_BUILD TRUE)
 
 add_subdirectory("reporting/crashrpt")
 add_subdirectory("reporting/crashsender")
